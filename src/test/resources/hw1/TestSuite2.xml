@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Multiply and division">
+    <test name="Mult and div">
+        <classes>
+            <class name="hw1.CalculatorMultypTest"/>
+            <class name="hw1.CalculatorDivTest"/>
+        </classes>
+    </test>
+</suite>
