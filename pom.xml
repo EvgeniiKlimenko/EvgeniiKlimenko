@@ -10,6 +10,16 @@
 
     <profiles>
         <profile>
+            <id>fullTest</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <suite.file>${project.basedir}/src/test/resources/hw1/TestSuiteFull.xml</suite.file>
+            </properties>
+        </profile>
+
+        <profile>
             <id>sumAndSub</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
