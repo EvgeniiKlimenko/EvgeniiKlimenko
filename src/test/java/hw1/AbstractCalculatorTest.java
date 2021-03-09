@@ -2,11 +2,9 @@ package hw1;
 
 import com.epam.tat.module4.*;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
 
-public class AbstractCalculatorTest {
+public abstract class AbstractCalculatorTest {
 
     protected Calculator calculator;
 
