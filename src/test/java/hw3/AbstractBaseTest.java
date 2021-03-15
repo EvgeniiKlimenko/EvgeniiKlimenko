@@ -1,4 +1,4 @@
-package hw2;
+package hw3;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -27,6 +27,7 @@ public abstract class AbstractBaseTest {
     @AfterClass
     public void tearDown() {
         driver.close();
+        driver = null;
     }
 
 }
