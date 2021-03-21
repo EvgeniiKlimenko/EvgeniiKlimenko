@@ -1,10 +1,11 @@
 package hw2.ex1;
 
 import hw2.AbstractBaseTest;
+import hw2.LoginUser;
+import hw2.MenuList;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
@@ -12,45 +13,25 @@ import java.util.ArrayList;
 
 public class Exercise1Test extends AbstractBaseTest {
 
-    private ArrayList<String> menuList;
-
-    @BeforeTest
-    public void initialize() {
-        menuList = new ArrayList<>(5);
-        menuList.add("HOME");
-        menuList.add("CONTACT FORM");
-        menuList.add("SERVICE");
-        menuList.add("METALS & COLORS");
-        menuList.add("ELEMENTS PACKS");
-    }
-
     @Test
     public void exerciseOneTest() {
-        driver.get(URL);
-        Assert.assertEquals(driver.getTitle(), "Home Page");
+        LoginUser loginUser = LoginUser.ROMAN;
+        openHomePage();
 
         //3. Perform login
-        ArrayList <WebElement> toggleList =
-                (ArrayList<WebElement>) driver.findElements(By.className("dropdown-toggle"));
-        toggleList.get(1).click();
-        WebElement loginElement = driver.findElement(By.id("name"));
-        WebElement passwordElement = driver.findElement(By.id("password"));
-        WebElement submitBtn = driver.findElement(By.id("login-button"));
-        loginElement.sendKeys(LOGIN);
-        passwordElement.sendKeys(PASSWORD);
-        submitBtn.click();
+        login(loginUser);
 
         //4. User name
-        WebElement userName = driver.findElement(By.id("user-name"));
-        Assert.assertEquals(userName.getText(), "ROMAN IOVLEV");
+        assertUserName(loginUser);
 
         //5. 4 items on the header
+        // "/html/body/header/div/nav/ul[1]/li[position()<5]/a"
         WebElement headerListTop = driver.findElement(By.xpath("//*[@class='uui-navigation nav navbar-nav m-l8']"));
         ArrayList <WebElement> headerHorizontalList =
-                (ArrayList<WebElement>) headerListTop.findElements(By.xpath("/html/body/header/div/nav/ul[1]/li[position()<5]/a"));
+                (ArrayList<WebElement>) headerListTop.findElements(By.xpath("./li[position()<5]/a"));
         Assert.assertEquals(headerHorizontalList.size(), 4);
         for (WebElement el: headerHorizontalList) {
-            Assert.assertTrue(menuList.contains(el.getText()));
+            Assert.assertTrue(MenuList.HOME.checkIsContains(el.getText()));
         }
 
         //6. 4 images on the Index Page are displayed
@@ -63,7 +44,7 @@ public class Exercise1Test extends AbstractBaseTest {
 
         //7. 4 texts under images
         ArrayList <WebElement> textsList =
-                (ArrayList<WebElement>) driver.findElements(By.xpath("/html/body/div/div[2]/main/div[2]/div[2]/div[position()<5]/div/span"));
+                (ArrayList<WebElement>) driver.findElements(By.xpath("//*[@class='col-sm-3']/div/span"));
         Assert.assertEquals(textsList.get(0).getText(),
                 "To include good practices\nand ideas from successful\nEPAM project");
         Assert.assertEquals(textsList.get(1).getText(), "To be flexible and\ncustomizable");
@@ -84,16 +65,13 @@ public class Exercise1Test extends AbstractBaseTest {
         driver.switchTo().defaultContent();
 
         //11. Sidebar menu
-        //  /html/body/div/div[1]/div/div[1]/div/div[1]/ul/li[1]/a/span
-        //  /html/body/div/div[1]/div/div[1]/div/div[1]/ul/li[2]/a/span
         ArrayList <WebElement> sidebarList =
-                (ArrayList<WebElement>) driver.findElements(By.xpath("/html/body/div/div[1]/div/div[1]/div/div[1]/ul/li[position()<6]/a/span"));
+                (ArrayList<WebElement>) driver.findElements(By.xpath("//*[@class='sidebar-menu']/li[position()<6]/a/span"));
         Assert.assertEquals(sidebarList.size(), 5);
         for (WebElement el: sidebarList) {
-            Assert.assertTrue(menuList.contains(el.getText().toUpperCase()));
+            Assert.assertTrue(MenuList.HOME.checkIsContains(el.getText().toUpperCase()));
         }
         //12. Closing is in Abstract parent class
     }
-
 
 }
