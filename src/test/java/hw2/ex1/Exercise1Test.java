@@ -8,43 +8,37 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.util.ArrayList;
-
+import java.util.List;
 
 public class Exercise1Test extends AbstractBaseTest {
 
     @Test
     public void exerciseOneTest() {
-        LoginUser loginUser = LoginUser.ROMAN;
         openHomePage();
 
         //3. Perform login
-        login(loginUser);
+        login(LoginUser.ROMAN);
 
         //4. User name
-        assertUserName(loginUser);
+        assertUserName(LoginUser.ROMAN);
 
         //5. 4 items on the header
-        // "/html/body/header/div/nav/ul[1]/li[position()<5]/a"
         WebElement headerListTop = driver.findElement(By.xpath("//*[@class='uui-navigation nav navbar-nav m-l8']"));
-        ArrayList <WebElement> headerHorizontalList =
-                (ArrayList<WebElement>) headerListTop.findElements(By.xpath("./li[position()<5]/a"));
+        List<WebElement> headerHorizontalList = headerListTop.findElements(By.xpath("./li[position()<5]/a"));
         Assert.assertEquals(headerHorizontalList.size(), 4);
         for (WebElement el: headerHorizontalList) {
             Assert.assertTrue(MenuList.HOME.checkIsContains(el.getText()));
         }
 
         //6. 4 images on the Index Page are displayed
-        ArrayList <WebElement> imagesList =
-                (ArrayList<WebElement>) driver.findElements(By.className("benefit-icon"));
+        List<WebElement> imagesList = driver.findElements(By.className("benefit-icon"));
         Assert.assertEquals(imagesList.size(), 4);
         for(WebElement el: imagesList) {
             Assert.assertTrue(el.isDisplayed());
         }
 
         //7. 4 texts under images
-        ArrayList <WebElement> textsList =
-                (ArrayList<WebElement>) driver.findElements(By.xpath("//*[@class='col-sm-3']/div/span"));
+        List<WebElement> textsList = driver.findElements(By.xpath("//*[@class='col-sm-3']/div/span"));
         Assert.assertEquals(textsList.get(0).getText(),
                 "To include good practices\nand ideas from successful\nEPAM project");
         Assert.assertEquals(textsList.get(1).getText(), "To be flexible and\ncustomizable");
@@ -65,8 +59,7 @@ public class Exercise1Test extends AbstractBaseTest {
         driver.switchTo().defaultContent();
 
         //11. Sidebar menu
-        ArrayList <WebElement> sidebarList =
-                (ArrayList<WebElement>) driver.findElements(By.xpath("//*[@class='sidebar-menu']/li[position()<6]/a/span"));
+        List<WebElement> sidebarList = driver.findElements(By.xpath("//*[@class='sidebar-menu']/li[position()<6]/a/span"));
         Assert.assertEquals(sidebarList.size(), 5);
         for (WebElement el: sidebarList) {
             Assert.assertTrue(MenuList.HOME.checkIsContains(el.getText().toUpperCase()));

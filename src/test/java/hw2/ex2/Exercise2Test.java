@@ -7,21 +7,19 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Exercise2Test extends AbstractBaseTest {
-    private LoginUser loginUser;
 
     @Test
     public void exerciseTwoTest() {
-        LoginUser loginUser = LoginUser.ROMAN;
         openHomePage();
 
         //3. Perform login
-        login(loginUser);
+        login(LoginUser.ROMAN);
 
         //4. User name
-        assertUserName(loginUser);
+        assertUserName(LoginUser.ROMAN);
 
         //5. Service -> Different Elements Page
         WebElement headerListTop = driver.findElement(By.xpath("//*[@class='uui-navigation nav navbar-nav m-l8']"));
@@ -41,8 +39,7 @@ public class Exercise2Test extends AbstractBaseTest {
         driver.findElement(By.xpath("//*[@class='colors']/select/option[4]")).click(); // Yellow
 
         //9. Check logs (Water, wind, selen, yellow)
-        ArrayList<WebElement> logsList =
-                (ArrayList<WebElement>) driver.findElements(By.xpath("//*[@class='info-panel-section']/ul/li"));
+        List<WebElement> logsList = driver.findElements(By.xpath("//*[@class='info-panel-section']/ul/li"));
         Assert.assertTrue(logsList.get(0).getText().contains("Yellow"));
         Assert.assertTrue(logsList.get(1).getText().contains("Selen"));
         Assert.assertTrue(logsList.get(2).getText().contains("Wind"));

@@ -10,14 +10,55 @@
 
     <profiles>
         <profile>
-            <id>fullTest</id>
+            <id>HW2fullTest</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <suite.file>${project.basedir}/src/test/resources/TestSuite1.xml</suite.file>                
+                <suite.file>${project.basedir}/src/test/resources/hw2/TestSuite1.xml</suite.file>
             </properties>
         </profile>
+
+        <profile>
+            <id>HW1fullTest</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <suite.file>${project.basedir}/src/test/resources/hw1/TestSuiteFull.xml</suite.file>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>HW1sumAndSub</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <suite.file>${project.basedir}/src/test/resources/hw1/TestSuite1.xml</suite.file>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>HW1multAndDiv</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <suite.file>${project.basedir}/src/test/resources/hw1/TestSuite2.xml</suite.file>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>HW1miscOp</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <suite.file>${project.basedir}/src/test/resources/hw1/TestSuite3.xml</suite.file>
+            </properties>
+        </profile>
+
     </profiles>
 
     <dependencies>
@@ -39,6 +80,13 @@
             <version>4.3.1</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.homework1</groupId>
+            <artifactId>sample</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/resources/calculator-1.0.jar</systemPath>
+        </dependency>
     </dependencies>
 
     <build>
@@ -51,7 +99,6 @@
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -62,9 +109,7 @@
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
-
         </plugins>
-
     </build>
 
     <properties>
