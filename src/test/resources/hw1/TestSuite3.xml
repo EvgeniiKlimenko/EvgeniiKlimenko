@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Other operations">
+    <test name="Pow, sign and sqrt">
+        <classes>
+            <class name="hw1.CalculatorPowTest"/>
+            <class name="hw1.CalculatorSignCheckTest"/>
+            <class name="hw1.CalculatorSqrtTest"/>
+        </classes>
+    </test>
+</suite>

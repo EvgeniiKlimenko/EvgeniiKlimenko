@@ -15,10 +15,9 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <suite.file>${project.basedir}/src/test/resources/TestSuite1.xml</suite.file>
+                <suite.file>${project.basedir}/src/test/resources/TestSuite1.xml</suite.file>                
             </properties>
         </profile>
-
     </profiles>
 
     <dependencies>
@@ -28,21 +27,18 @@
             <version>4.0.0-beta-1</version>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>7.3.0</version>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
             <version>4.3.1</version>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
 
     <build>
