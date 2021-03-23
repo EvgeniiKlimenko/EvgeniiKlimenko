@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Full test">
+    <test name="All tests run">
+        <classes>
+            <class name="hw1.CalculatorSumTest"/>
+            <class name="hw1.CalculatorSubtrTest"/>
+            <class name="hw1.CalculatorMultypTest"/>
+            <class name="hw1.CalculatorDivTest"/>
+            <class name="hw1.CalculatorPowTest"/>
+            <class name="hw1.CalculatorSignCheckTest"/>
+            <class name="hw1.CalculatorSqrtTest"/>
+        </classes>
+    </test>
+</suite>
