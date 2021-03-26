@@ -5,15 +5,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-
 import java.time.Duration;
 
 public abstract class AbstractBaseTest {
 
     protected WebDriver driver;
     protected final String URL = "https://jdi-testing.github.io/jdi-light/index.html";
-    protected final String LOGIN = "Roman";
-    protected final String PASSWORD = "Jdi1234";
 
     @BeforeClass
     public void setUp() {

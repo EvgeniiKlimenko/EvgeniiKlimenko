@@ -1,5 +1,6 @@
 package hw3.pages;
 
+import hw2.LoginUser;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,24 +14,25 @@ public class IndexPage {
     private WebDriver myDriver;
 
     @FindBy(id = "name")
-    private WebElement user;
+    private WebElement userField;
 
     @FindBy(id = "password")
-    private WebElement password;
+    private WebElement passwordField;
 
     @FindBy(id = "login-button")
     private WebElement submitBtn;
-
-    @FindBy(xpath = ("/html/body/header/div/nav/ul[1]/li[position()<5]/a"))
+// //*[@class='uui-navigation nav navbar-nav m-l8']/li[position()<5]/a
+    // "/html/body/header/div/nav/ul[1]/li[position()<5]/a"
+    @FindBy(xpath = ("//*[@class='uui-navigation nav navbar-nav m-l8']/li[position()<5]/a"))
     List<WebElement> headerHorizontalList;
 
     @FindBy(className = ("benefit-icon"))
     List<WebElement> benefitImagesList;
 
-    @FindBy(xpath = ("/html/body/div/div[2]/main/div[2]/div[2]/div[position()<5]/div/span"))
+    @FindBy(xpath = ("//*[@class='col-sm-3']/div/span"))
     List<WebElement> benefitTextsList;
 
-    @FindBy(xpath = ("/html/body/div/div[1]/div/div[1]/div/div[1]/ul/li[position()<6]/a/span"))
+    @FindBy(xpath = ("//*[@class='sidebar-menu']/li[position()<6]/a/span"))
     List<WebElement> sideBarMenuList;
 
     public IndexPage(WebDriver driver) {
@@ -38,16 +40,16 @@ public class IndexPage {
         myDriver = driver;
     }
 
-    public void login(String userName, String password) {
+    public void login(LoginUser loginUser) {
         myDriver.findElements(By.className("dropdown-toggle")).get(1).click();
-        user.sendKeys(userName);
-        this.password.sendKeys(password);
+        userField.sendKeys(loginUser.getLogin());
+        this.passwordField.sendKeys(loginUser.getPassword());
         submitBtn.click();
     }
 
-    public boolean isLoggedUserCorrect(String nameToCheck) {
+    public boolean isLoggedUserCorrect(LoginUser loginUser) {
         WebElement userName = myDriver.findElement(By.id("user-name"));
-        return userName.getText().equals(nameToCheck);
+        return userName.getText().equals(loginUser.getCorrectName());
     }
 
     public List<WebElement> getHeaderHorizList() { return headerHorizontalList; }

@@ -1,29 +1,17 @@
 package hw3.ex1;
 
+import hw2.LoginUser;
+import hw2.MenuList;
 import hw3.AbstractBaseTest;
 import hw3.pages.IndexPage;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
 public class Exercise1Test extends AbstractBaseTest {
-
-    private ArrayList<String> menuList;
-
-    @BeforeTest
-    public void initialize() {
-        menuList = new ArrayList<>(5);
-        menuList.add("HOME");
-        menuList.add("CONTACT FORM");
-        menuList.add("SERVICE");
-        menuList.add("METALS & COLORS");
-        menuList.add("ELEMENTS PACKS");
-    }
 
     @Test
     public void exerciseOneTest() {
@@ -32,15 +20,15 @@ public class Exercise1Test extends AbstractBaseTest {
         Assert.assertEquals(driver.getTitle(), "Home Page");
 
         //3. Perform login
-        indexPage.login(LOGIN, PASSWORD);
+        indexPage.login(LoginUser.ROMAN);
 
         //4. User name
-        Assert.assertTrue(indexPage.isLoggedUserCorrect("ROMAN IOVLEV"));
+        Assert.assertTrue(indexPage.isLoggedUserCorrect(LoginUser.ROMAN));
 
         //5. 4 items on the header
         Assert.assertEquals(indexPage.getHeaderHorizList().size(), 4);
         for (WebElement el: indexPage.getHeaderHorizList()) {
-            Assert.assertTrue(menuList.contains(el.getText()));
+            Assert.assertTrue(MenuList.HOME.checkIsContains(el.getText()));
         }
 
         //6. 4 images on the Index Page are displayed
@@ -74,7 +62,7 @@ public class Exercise1Test extends AbstractBaseTest {
         List<WebElement> sidebarList = indexPage.getSideBarMenuList();
         Assert.assertEquals(sidebarList.size(), 5);
         for (WebElement el: sidebarList) {
-            Assert.assertTrue(menuList.contains(el.getText().toUpperCase()));
+            Assert.assertTrue(MenuList.HOME.checkIsContains(el.getText().toUpperCase()));
         }
 
         //12. Closing is in Abstract parent class
