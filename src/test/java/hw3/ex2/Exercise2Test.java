@@ -2,8 +2,8 @@ package hw3.ex2;
 
 import hw2.LoginUser;
 import hw3.AbstractBaseTest;
-import hw3.pages.DifferentElementsPage;
-import hw3.pages.IndexPage;
+import pages.DifferentElementsPage;
+import pages.IndexPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -21,28 +21,26 @@ public class Exercise2Test extends AbstractBaseTest {
         Assert.assertEquals(driver.getTitle(), "Home Page");
 
         //3. Perform login
-        indexPage.login(LoginUser.ROMAN);
+        indexPage.login(props.getProperty("user.roman.login"), props.getProperty("user.roman.password"));
 
         //4. User name
-        Assert.assertTrue(indexPage.isLoggedUserCorrect(LoginUser.ROMAN));
+        Assert.assertTrue(indexPage.isLoggedUserCorrect(props.getProperty("user.roman.correctName")));
 
         //5. Service -> Different Elements Page
         indexPage.goToDifferentElementsPage();
         Assert.assertEquals(driver.getTitle(), "Different Elements");
 
-        // How to handle with such elements like in 6-7-8 ???
         //6. Select checkboxes
-        driver.findElement(By.xpath("//label[contains(. ,'Water')]/input")).click(); // Water
-        driver.findElement(By.xpath("//label[contains(. ,'Wind')]/input")).click(); // Wind
+        difElPage.selectCheckBoxes();
 
         //7. Select radio button
-        driver.findElement(By.xpath("//label[contains(. ,'Selen')]/input")).click(); // Selen
+        difElPage.selectRadioButton();
 
         //8. Select dropdown
-        driver.findElement(By.xpath("//*[@class='colors']/select/option[4]")).click(); // Yellow
+        difElPage.selectFromDropdownMenu();
 
         //9. Check logs (Water, wind, selen, yellow)
-        List<WebElement> logsList = driver.findElements(By.xpath("//*[@class='info-panel-section']/ul/li"));
+        List<WebElement> logsList = difElPage.getLogsList();
         Assert.assertTrue(logsList.get(0).getText().contains("Yellow"));
         Assert.assertTrue(logsList.get(1).getText().contains("Selen"));
         Assert.assertTrue(logsList.get(2).getText().contains("Wind"));

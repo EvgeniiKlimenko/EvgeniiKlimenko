@@ -1,9 +1,8 @@
 package hw3.ex1;
 
-import hw2.LoginUser;
 import hw2.MenuList;
 import hw3.AbstractBaseTest;
-import hw3.pages.IndexPage;
+import pages.IndexPage;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -20,10 +19,10 @@ public class Exercise1Test extends AbstractBaseTest {
         Assert.assertEquals(driver.getTitle(), "Home Page");
 
         //3. Perform login
-        indexPage.login(LoginUser.ROMAN);
+        indexPage.login(props.getProperty("user.roman.login"), props.getProperty("user.roman.password"));
 
         //4. User name
-        Assert.assertTrue(indexPage.isLoggedUserCorrect(LoginUser.ROMAN));
+        Assert.assertTrue(indexPage.isLoggedUserCorrect(props.getProperty("user.roman.correctName")));
 
         //5. 4 items on the header
         Assert.assertEquals(indexPage.getHeaderHorizList().size(), 4);
@@ -51,7 +50,7 @@ public class Exercise1Test extends AbstractBaseTest {
         Assert.assertTrue(frameWithButton.isDisplayed());
 
         //9. Switch to frame and check button
-        driver.switchTo().frame("frame");
+        indexPage.goToIFrameWithButton("frame");
         WebElement frameButton = indexPage.getButtonFromIFrame();
         Assert.assertTrue(frameButton.isDisplayed());
 
