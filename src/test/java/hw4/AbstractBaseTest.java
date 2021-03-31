@@ -23,7 +23,8 @@ public abstract class AbstractBaseTest {
     @BeforeClass
     public void setUp(ITestContext context) {
         // .browserVersion("89.0.4389.82")
-        WebDriverManager.chromedriver().setup();
+        // .browserVersion("89.0.4389.90")
+        WebDriverManager.chromedriver().browserVersion("89.0.4389.90").setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(5000));
