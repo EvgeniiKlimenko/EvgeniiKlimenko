@@ -27,17 +27,7 @@
                 <suite.file>${project.basedir}/src/test/resources/hw4/TestSuite1.xml</suite.file>
             </properties>
         </profile>
-
-        <profile>
-            <id>HW3fullTest</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
-            <properties>
-                <suite.file>${project.basedir}/src/test/resources/hw3/TestSuite1.xml</suite.file>
-            </properties>
-        </profile>
-
+        
         <profile>
             <id>HW2fullTest</id>
             <activation>
