@@ -19,10 +19,10 @@ public class Exercise1Test extends AbstractBaseTest {
         Assert.assertEquals(driver.getTitle(), "Home Page");
 
         //3. Perform login
-        indexPage.login(props.getProperty("user.roman.login"), props.getProperty("user.roman.password"));
+        indexPage.login(ROMAN_LOGIN, ROMAN_PASSWORD);
 
         //4. User name
-        Assert.assertTrue(indexPage.isLoggedUserCorrect(props.getProperty("user.roman.correctName")));
+        Assert.assertTrue(indexPage.isLoggedUserCorrect(ROMAN_CORRECT_NAME));
 
         //5. 4 items on the header
         Assert.assertEquals(indexPage.getHeaderHorizList().size(), 4);

@@ -1,10 +1,8 @@
 package hw3.ex2;
 
-import hw2.LoginUser;
 import hw3.AbstractBaseTest;
 import pages.DifferentElementsPage;
 import pages.IndexPage;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -21,10 +19,10 @@ public class Exercise2Test extends AbstractBaseTest {
         Assert.assertEquals(driver.getTitle(), "Home Page");
 
         //3. Perform login
-        indexPage.login(props.getProperty("user.roman.login"), props.getProperty("user.roman.password"));
+        indexPage.login(ROMAN_LOGIN, ROMAN_PASSWORD);
 
         //4. User name
-        Assert.assertTrue(indexPage.isLoggedUserCorrect(props.getProperty("user.roman.correctName")));
+        Assert.assertTrue(indexPage.isLoggedUserCorrect(ROMAN_CORRECT_NAME));
 
         //5. Service -> Different Elements Page
         indexPage.goToDifferentElementsPage();

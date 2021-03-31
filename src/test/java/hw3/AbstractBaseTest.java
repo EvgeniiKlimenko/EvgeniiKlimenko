@@ -5,17 +5,17 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import utils.PropertiesHolder;
 
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.time.Duration;
-import java.util.Properties;
 
 public abstract class AbstractBaseTest {
 
-    protected Properties props;
     protected WebDriver driver;
     protected final String URL = "https://jdi-testing.github.io/jdi-light/index.html";
+    protected final String ROMAN_LOGIN = PropertiesHolder.PROPS.getProperty("user.roman.login");
+    protected final String ROMAN_PASSWORD = PropertiesHolder.PROPS.getProperty("user.roman.password");
+    protected final String ROMAN_CORRECT_NAME = PropertiesHolder.PROPS.getProperty("user.roman.correctName");
 
     @BeforeClass
     public void setUp() {
@@ -24,14 +24,6 @@ public abstract class AbstractBaseTest {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(5000));
         driver.manage().timeouts().pageLoadTimeout(Duration.ofMillis(10000));
-
-        props = new Properties();
-        try {
-            props.load(new FileInputStream("src/test/resources/userData.properties"));
-        } catch (IOException badEvent) {
-            System.out.println("Can't load properties file!");
-            badEvent.printStackTrace();
-        }
     }
 
     @AfterClass
