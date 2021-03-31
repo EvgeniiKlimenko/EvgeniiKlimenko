@@ -1,7 +1,7 @@
 package hw4.steps;
 
-import hw4.pages.DifferentElementsPage;
-import hw4.pages.IndexPage;
+import pages.DifferentElementsPage;
+import pages.IndexPage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;

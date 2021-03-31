@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
-//hw3
+
 public class DifferentElementsPage extends AbstractPage {
 
     @FindBy(xpath = ("//*[@class='info-panel-section']/ul/li"))

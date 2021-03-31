@@ -7,8 +7,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
-//hw3
+
 public class IndexPage extends AbstractPage {
+    private String URL = "https://jdi-testing.github.io/jdi-light/index.html";
 
     @FindBy(id = "name")
     private WebElement userField;
@@ -34,6 +35,10 @@ public class IndexPage extends AbstractPage {
     public IndexPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
+    }
+
+    public void openIndexPage() {
+        myDriver.get(URL);
     }
 
     public void login(String login, String pass) {

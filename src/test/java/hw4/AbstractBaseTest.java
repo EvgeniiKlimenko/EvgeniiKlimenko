@@ -1,5 +1,6 @@
 package hw4;
 
+import utils.PropertiesHolder;
 import hw4.steps.ActionStep;
 import hw4.steps.AssertionStep;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -8,15 +9,13 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.time.Duration;
-import java.util.Properties;
 
 public abstract class AbstractBaseTest {
 
-    protected Properties props;
+    protected final String ROMAN_LOGIN = PropertiesHolder.PROPS.getProperty("user.roman.login");
+    protected final String ROMAN_PASSWORD = PropertiesHolder.PROPS.getProperty("user.roman.password");
+    protected final String ROMAN_CORRECT_NAME = PropertiesHolder.PROPS.getProperty("user.roman.correctName");
     protected WebDriver driver;
     protected ActionStep actionStep;
     protected AssertionStep assertionStep;
@@ -30,13 +29,6 @@ public abstract class AbstractBaseTest {
         driver.manage().timeouts().pageLoadTimeout(Duration.ofMillis(10000));
         actionStep = new ActionStep(driver);
         assertionStep = new AssertionStep(driver);
-        props = new Properties();
-        try {
-            props.load(new FileInputStream("src/test/resources/userData.properties"));
-        } catch (IOException badEvent) {
-            System.out.println("Can't load properties file!");
-            badEvent.printStackTrace();
-        }
         context.setAttribute("driver", driver);
     }
 

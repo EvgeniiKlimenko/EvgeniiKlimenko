@@ -15,10 +15,10 @@ public class Exercise2Test extends AbstractBaseTest {
         assertionStep.pageTitleIsCorrect(driver.getTitle(), "Home Page");
 
         //3. Perform login
-        actionStep.login(props.getProperty("user.roman.login"), props.getProperty("user.roman.password"));
+        actionStep.login(ROMAN_LOGIN, ROMAN_PASSWORD);
 
         //4. User name
-        assertionStep.loggedInUserNameIsCorrect(props.getProperty("user.roman.correctName"));
+        assertionStep.loggedInUserNameIsCorrect(ROMAN_CORRECT_NAME);
 
         //5. Service -> Different Elements Page
         actionStep.goToDifferentElementsPage();
