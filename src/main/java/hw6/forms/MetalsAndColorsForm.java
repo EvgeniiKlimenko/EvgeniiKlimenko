@@ -22,8 +22,8 @@ public class MetalsAndColorsForm extends Form {
     @FindBy(id="calculate-button")
     public Button calculateButton;
 
-    @Css("#elements-checklist")
-    Checklist checkListElementsSection;
+    @XPath("//*[@id='elements-checklist']/p[position()<5]/input")
+    public Checklist checkListElements;
 
     @XPath("//*[@id='colors']/div/button")
     public Button colorsDropdownButton;
@@ -67,13 +67,20 @@ public class MetalsAndColorsForm extends Form {
             metalsDropdown.select(testData.metals);
         }
 
-        vegetablesDropdownButton.click();
+
+        checkListElements.uncheckAll();
+        System.out.println(checkListElements.values());
+        for(String elem : testData.elements) {
+            checkListElements.select(elem);
+        }
+
+        /*vegetablesDropdownButton.click();
         vegetablesMenu.uncheckAll();
 
         for(String veg : testData.vegetables) {
             vegetablesMenu.check(veg);
         }
-
+*/
         submitButton.click();
 
     }
