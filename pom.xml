@@ -22,9 +22,19 @@
 
     <profiles>
         <profile>
-            <id>HW2fullTest</id>
+            <id>HW6fullTest</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <suite.file>${project.basedir}/src/test/resources/hw6/TestSuiteHW6.xml</suite.file>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>HW2fullTest</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
                 <suite.file>${project.basedir}/src/test/resources/hw2/TestSuite1.xml</suite.file>
@@ -34,7 +44,7 @@
         <profile>
             <id>HW1fullTest</id>
             <activation>
-                <activeByDefault>true</activeByDefault>
+                <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
                 <suite.file>${project.basedir}/src/test/resources/hw1/TestSuiteFull.xml</suite.file>
@@ -44,7 +54,7 @@
         <profile>
             <id>HW1sumAndSub</id>
             <activation>
-                <activeByDefault>true</activeByDefault>
+                <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
                 <suite.file>${project.basedir}/src/test/resources/hw1/TestSuite1.xml</suite.file>

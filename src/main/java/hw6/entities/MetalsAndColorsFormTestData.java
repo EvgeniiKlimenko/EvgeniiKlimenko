@@ -21,6 +21,11 @@ public class MetalsAndColorsFormTestData {
         this.vegetables = vegetablesList;
     }
 
+    public String getSummaryAsString() {
+        Integer sumOfSummaryArray = summary.get(0) + summary.get(1);
+        return sumOfSummaryArray.toString();
+    }
+
     @Override
     public String toString() {
         return "* Print: MetalsAndColorsFormTestData {" +

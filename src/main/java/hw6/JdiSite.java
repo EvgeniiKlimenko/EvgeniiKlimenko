@@ -2,7 +2,6 @@ package hw6;
 
 import com.epam.jdi.light.elements.pageobjects.annotations.JSite;
 import com.epam.jdi.light.elements.pageobjects.annotations.Url;
-import hw6.entities.MetalsAndColorsFormTestData;
 import hw6.pages.JdiHomePage;
 import hw6.pages.JdiMetalsAndColorsPage;
 
