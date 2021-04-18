@@ -15,6 +15,11 @@
         <selenium.version>4.0.0-beta-1</selenium.version>
         <maven-failsafe-plugin.version>3.0.0-M5</maven-failsafe-plugin.version>
         <aspectj.version>1.8.10</aspectj.version>
+        <testng.version>7.3.0</testng.version>
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <webdrivermanager.version>4.3.1</webdrivermanager.version>
+
+
     </properties>
 
     <profiles>
@@ -108,13 +113,13 @@
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>7.3.0</version>
+            <version>${testng.version}</version>
         </dependency>
 
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>4.3.1</version>
+            <version>${webdrivermanager.version}</version>
         </dependency>
 
         <dependency>
@@ -145,7 +150,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
+                <version>${maven-compiler-plugin.version}</version>
                 <configuration>
                     <encoding>UTF-8</encoding>
                 </configuration>
@@ -154,7 +159,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M5</version>
+                <version>${maven-failsafe-plugin.version}</version>
                 <configuration>
 
                     <suiteXmlFiles>
