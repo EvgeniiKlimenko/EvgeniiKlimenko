@@ -11,6 +11,9 @@ import java.util.List;
 
 
 public class Exercise1Test extends AbstractBaseTest {
+    private final int SIDEBAR_LIST_SIZE_EXPECTED = 5;
+    private final int HEADER_HORIZON_LIST_SIZE_EXPECTED = 4;
+    private final int BENEFIT_IMAGES_LIST_SIZE_EXPECTED = 4;
 
     @Test
     public void exerciseOneTest() {
@@ -25,13 +28,13 @@ public class Exercise1Test extends AbstractBaseTest {
         Assert.assertTrue(indexPage.isLoggedUserCorrect(ROMAN_CORRECT_NAME));
 
         //5. 4 items on the header
-        Assert.assertEquals(indexPage.getHeaderHorizList().size(), 4);
+        Assert.assertEquals(indexPage.getHeaderHorizList().size(), HEADER_HORIZON_LIST_SIZE_EXPECTED);
         for (WebElement el: indexPage.getHeaderHorizList()) {
             Assert.assertTrue(MenuList.HOME.checkIsContains(el.getText()));
         }
 
         //6. 4 images on the Index Page are displayed
-        Assert.assertEquals(indexPage.getBenefitImagesList().size(), 4);
+        Assert.assertEquals(indexPage.getBenefitImagesList().size(), BENEFIT_IMAGES_LIST_SIZE_EXPECTED);
         for(WebElement el: indexPage.getBenefitImagesList()) {
             Assert.assertTrue(el.isDisplayed());
         }
@@ -59,7 +62,7 @@ public class Exercise1Test extends AbstractBaseTest {
 
         //11. Sidebar menu
         List<WebElement> sidebarList = indexPage.getSideBarMenuList();
-        Assert.assertEquals(sidebarList.size(), 5);
+        Assert.assertEquals(sidebarList.size(), SIDEBAR_LIST_SIZE_EXPECTED);
         for (WebElement el: sidebarList) {
             Assert.assertTrue(MenuList.HOME.checkIsContains(el.getText().toUpperCase()));
         }

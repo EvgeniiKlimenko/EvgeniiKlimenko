@@ -11,6 +11,11 @@ import java.util.List;
 
 public class Exercise2Test extends AbstractBaseTest {
 
+    private final String WATER_CHECKBOX_LOCATOR = "//label[contains(. ,'Water')]/input";
+    private final String WIND_CHECKBOX_LOCATOR = "//label[contains(. ,'Wind')]/input";
+    private final String SELEN_RADIO_BUTTON_LOCATOR = "//label[contains(. ,'Selen')]/input";
+    private final String YELLOW_DROPDOWN_OPTION_LOCATOR = "//*[@class='colors']/select/option[4]";
+
     @Test
     public void exerciseTwoTest() {
         driver.get(URL);
@@ -29,13 +34,10 @@ public class Exercise2Test extends AbstractBaseTest {
         Assert.assertEquals(driver.getTitle(), "Different Elements");
 
         //6. Select checkboxes
-        difElPage.selectCheckBoxes();
-
         //7. Select radio button
-        difElPage.selectRadioButton();
-
         //8. Select dropdown
-        difElPage.selectFromDropdownMenu();
+        difElPage.selectElementsByXPath(WATER_CHECKBOX_LOCATOR, WIND_CHECKBOX_LOCATOR,
+                                        SELEN_RADIO_BUTTON_LOCATOR, YELLOW_DROPDOWN_OPTION_LOCATOR);
 
         //9. Check logs (Water, wind, selen, yellow)
         List<WebElement> logsList = difElPage.getLogsList();

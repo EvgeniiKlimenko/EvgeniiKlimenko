@@ -18,7 +18,15 @@ public class DifferentElementsPage extends AbstractPage {
         PageFactory.initElements(driver, this);
     }
 
-    public List<WebElement> getLogsList() { return logsList; }
+    public List<WebElement> getLogsList() {
+        return logsList;
+    }
+
+    public void selectElementsByXPath(String ... elements) {
+        for(String locatorToClick: elements) {
+            myDriver.findElement(By.xpath(locatorToClick)).click();
+        }
+    }
 
     public void selectCheckBoxes() {
         myDriver.findElement(By.xpath("//label[contains(. ,'Water')]/input")).click(); // Water

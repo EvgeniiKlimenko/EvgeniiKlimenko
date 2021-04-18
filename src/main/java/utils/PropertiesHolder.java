@@ -6,12 +6,13 @@ import java.util.Properties;
 
 public class PropertiesHolder {
 
+    private static final String PATH_TO_PROPERTIES = "src/test/resources/userData.properties";
     public static final Properties PROPS;
 
     static {
         PROPS = new Properties();
         try {
-            PROPS.load(new FileInputStream("src/test/resources/userData.properties"));
+            PROPS.load(new FileInputStream(PATH_TO_PROPERTIES));
         } catch (IOException badEvent) {
             System.out.println("Can't load properties file!");
             badEvent.printStackTrace();
