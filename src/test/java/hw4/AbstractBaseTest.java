@@ -13,6 +13,7 @@ import java.time.Duration;
 
 public abstract class AbstractBaseTest {
 
+    protected final String  HOME_PAGE_TITLE_EXPECTED = "Home Page";
     protected final String ROMAN_LOGIN = PropertiesHolder.PROPS.getProperty("user.roman.login");
     protected final String ROMAN_PASSWORD = PropertiesHolder.PROPS.getProperty("user.roman.password");
     protected final String ROMAN_CORRECT_NAME = PropertiesHolder.PROPS.getProperty("user.roman.correctName");

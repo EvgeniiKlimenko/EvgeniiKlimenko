@@ -6,13 +6,15 @@ import org.testng.annotations.Test;
 
 public class Exercise2Test extends AbstractBaseTest {
 
+    private final String  DIFFERENT_ELEMENTS_PAGE_TITLE_EXPECTED = "Different Elements";
+
     @Test(description = "Test different elements page, exercise 2")
     public void exerciseTwoTest() {
         //1. Open index page
         actionStep.openIndexPage();
 
         //2. Check title
-        assertionStep.pageTitleIsCorrect(driver.getTitle(), "Home Page");
+        assertionStep.pageTitleIsCorrect(driver.getTitle(), super.HOME_PAGE_TITLE_EXPECTED);
 
         //3. Perform login
         actionStep.login(ROMAN_LOGIN, ROMAN_PASSWORD);
@@ -22,7 +24,7 @@ public class Exercise2Test extends AbstractBaseTest {
 
         //5. Service -> Different Elements Page
         actionStep.goToDifferentElementsPage();
-        assertionStep.pageTitleIsCorrect(driver.getTitle(), "Different Elements");
+        assertionStep.pageTitleIsCorrect(driver.getTitle(), DIFFERENT_ELEMENTS_PAGE_TITLE_EXPECTED);
 
         //6. Select checkboxes water and wind
         actionStep.selectCheckBoxes();
