@@ -10,6 +10,7 @@ import java.util.List;
 //hw3
 public class IndexPage extends AbstractPage {
 
+    //private final String
     private final String DIFFERENT_ELEMENTS_REF_IN_HEADER_MENU_TOP = "//li[3]/ul/li[8]/a";
     private final String BUTTON_IN_IFRAME = "#frame-button";
 
@@ -46,6 +47,9 @@ public class IndexPage extends AbstractPage {
     @FindBy(xpath = ("//header/div/nav/ul[1]/li[3]"))
     private WebElement serviceTopMenuButton;
 
+    @FindBy(id = ("frame"))
+    private WebElement iFrameWithButton;
+
     public IndexPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -54,7 +58,7 @@ public class IndexPage extends AbstractPage {
     public void login(String login, String pass) {
         openLoginDropdownButton.click();
         userField.sendKeys(login);
-        this.passwordField.sendKeys(pass);
+        passwordField.sendKeys(pass);
         submitBtn.click();
     }
 
@@ -62,16 +66,24 @@ public class IndexPage extends AbstractPage {
         return loggedUserName.getText().equals(userExpectedName);
     }
 
-    public List<WebElement> getHeaderHorizList() { return headerHorizontalList; }
+    public List<WebElement> getHeaderHorizList() {
+        return headerHorizontalList;
+    }
 
-    public List<WebElement> getBenefitImagesList() { return benefitImagesList; }
+    public List<WebElement> getBenefitImagesList() {
+        return benefitImagesList;
+    }
 
-    public List<WebElement> getBenefitTextsList() { return benefitTextsList; }
+    public List<WebElement> getBenefitTextsList() {
+        return benefitTextsList;
+    }
 
-    public List<WebElement> getSideBarMenuList() { return sideBarMenuList;}
+    public List<WebElement> getSideBarMenuList() {
+        return sideBarMenuList;
+    }
 
-    public WebElement getIFrameByName(String frameName) {
-        return myDriver.findElement(By.id(frameName));
+    public WebElement getIFrameWithButton() {
+        return iFrameWithButton;
     }
 
     public void switchToDefaultContent() {
@@ -79,7 +91,7 @@ public class IndexPage extends AbstractPage {
     }
 
     /**
-     * Use only when content is switched to iFrame with switchToIFrameWButton()
+     * Use only when content is switched to iFrame with goToIFrameByWebElement(iFrameWithButton)
      * @return button within iFrame
      */
     public WebElement getButtonFromIFrame() {
@@ -91,8 +103,8 @@ public class IndexPage extends AbstractPage {
         headerMenuTop.findElement(By.xpath(DIFFERENT_ELEMENTS_REF_IN_HEADER_MENU_TOP)).click();
     }
 
-    public void goToIFrameWithButton(String name) {
-        myDriver.switchTo().frame(name);
+    public void goToIFrameByWebElement(WebElement frameElement) {
+        myDriver.switchTo().frame(frameElement);
     }
 
 }

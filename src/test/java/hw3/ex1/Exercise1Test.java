@@ -19,7 +19,7 @@ public class Exercise1Test extends AbstractBaseTest {
     public void exerciseOneTest() {
         driver.get(URL);
         IndexPage indexPage = new IndexPage(driver);
-        Assert.assertEquals(driver.getTitle(), "Home Page");
+        Assert.assertEquals(driver.getTitle(), super.HOME_PAGE_TITLE_EXPECTED);
 
         //3. Perform login
         indexPage.login(ROMAN_LOGIN, ROMAN_PASSWORD);
@@ -49,11 +49,11 @@ public class Exercise1Test extends AbstractBaseTest {
                 "Already have good base\n(about 20 internal and\nsome external projects),\nwish to get more…");
 
         //8. iFrame with button
-        WebElement frameWithButton = indexPage.getIFrameByName("frame");
+        WebElement frameWithButton = indexPage.getIFrameWithButton();
         Assert.assertTrue(frameWithButton.isDisplayed());
 
         //9. Switch to frame and check button
-        indexPage.goToIFrameWithButton("frame");
+        indexPage.goToIFrameByWebElement(frameWithButton);
         WebElement frameButton = indexPage.getButtonFromIFrame();
         Assert.assertTrue(frameButton.isDisplayed());
 
