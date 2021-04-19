@@ -21,16 +21,16 @@ public class IndexPage extends AbstractPage {
     private WebElement submitBtn;
 
     @FindBy(xpath = ("//*[@class='uui-navigation nav navbar-nav m-l8']/li[position()<5]/a"))
-    List<WebElement> headerHorizontalList;
+    private List<WebElement> headerHorizontalList;
 
     @FindBy(className = ("benefit-icon"))
-    List<WebElement> benefitImagesList;
+    private List<WebElement> benefitImagesList;
 
     @FindBy(xpath = ("//*[@class='col-sm-3']/div/span"))
-    List<WebElement> benefitTextsList;
+    private List<WebElement> benefitTextsList;
 
     @FindBy(xpath = ("//*[@class='sidebar-menu']/li[position()<6]/a/span"))
-    List<WebElement> sideBarMenuList;
+    private List<WebElement> sideBarMenuList;
 
     public IndexPage(WebDriver driver) {
         super(driver);
