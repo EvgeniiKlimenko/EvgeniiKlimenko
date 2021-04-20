@@ -32,6 +32,16 @@
         </profile>
 
         <profile>
+            <id>HW3fullTest</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <suite.file>${project.basedir}/src/test/resources/hw3/TestSuite1.xml</suite.file>
+            </properties>
+        </profile>
+
+        <profile>
             <id>HW2fullTest</id>
             <activation>
                 <activeByDefault>false</activeByDefault>
@@ -98,6 +108,18 @@
         </dependency>
 
         <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-api</artifactId>
+            <version>${selenium.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-support</artifactId>
+            <version>${selenium.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>${testng.version}</version>
@@ -143,6 +165,7 @@
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -154,8 +177,7 @@
                 </configuration>
             </plugin>
         </plugins>
+
     </build>
-
-
 
 </project>
