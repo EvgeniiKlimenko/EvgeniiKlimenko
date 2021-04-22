@@ -4,9 +4,9 @@ import com.epam.jdi.light.driver.WebDriverUtils;
 import com.epam.jdi.light.elements.init.PageFactory;
 import hw6.entities.MetalsAndColors;
 import hw6.entities.User;
+import hw6.pages.JdiPages;
 import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
@@ -24,14 +24,13 @@ public class JdiTest {
         WebDriverUtils.killAllSeleniumDrivers();
     }
 
-
     @Test
     public void testGoToMetalsAndColorPage() {
         JdiSite.jdiHomePage.open();
         JdiSite.jdiHomePage.checkOpened();
         JdiSite.jdiHomePage.login(User.ROMAN);
         JdiSite.jdiHomePage.userName.is().text(User.ROMAN.getFullName());
-        JdiSite.jdiHomePage.goToMetalsAndColorsPage();
+        JdiSite.goToPage(JdiPages.METALS_AND_COLORS_PAGE);
         JdiSite.jdiMetalsAndColorsPage.checkOpened();
         JdiSite.jdiMetalsAndColorsPage.prepareMetalsAndColorsForm();
     }

@@ -24,13 +24,12 @@ public class JdiHomePage extends WebPage {
     @FindBy(id = "user-name")
     public Label userName;
 
+    @FindBy(id = "epam-logo")
+    public Label linkToHomePage;
+
     public void login(User user) {
         loginIcon.click();
         loginForm.login(user);
-    }
-
-    public void goToMetalsAndColorsPage() {
-        linkToMetalsAndColorsPage.click();
     }
 
     public String getUserName() {
