@@ -3,7 +3,7 @@ package hw6;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.JsonObject;
-import hw6.entities.MetalsAndColorsFormTestData;
+import hw6.entities.MetalsAndColors;
 import org.testng.annotations.DataProvider;
 
 import java.io.FileNotFoundException;
@@ -13,14 +13,16 @@ import java.util.LinkedList;
 
 public class JsonDataProvider {
 
+    private final static String PATH_TO_JSON = "src/test/resources/hw6/JDI_ex8_metalsColorsDataSet.json";
+
     @DataProvider
     public Object[][] testDataFromJson() {
         Gson gson = new Gson();
         JsonReader jsonReader = null;
-        LinkedList<MetalsAndColorsFormTestData> testDataList = new LinkedList<MetalsAndColorsFormTestData>();
+        LinkedList<MetalsAndColors> testDataList = new LinkedList<MetalsAndColors>();
 
         try {
-            jsonReader = new JsonReader(new FileReader("src/test/resources/hw6/JDI_ex8_metalsColorsDataSet.json"));
+            jsonReader = new JsonReader(new FileReader(PATH_TO_JSON));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -28,7 +30,7 @@ public class JsonDataProvider {
         JsonObject bigObject = gson.fromJson(jsonReader, JsonObject.class);
 
         for(String dataKey : bigObject.keySet()) {
-            MetalsAndColorsFormTestData data = gson.fromJson(bigObject.get(dataKey), MetalsAndColorsFormTestData.class);
+            MetalsAndColors data = gson.fromJson(bigObject.get(dataKey), MetalsAndColors.class);
             testDataList.add(data);
         }
 

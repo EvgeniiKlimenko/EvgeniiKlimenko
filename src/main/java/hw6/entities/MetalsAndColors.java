@@ -3,7 +3,7 @@ package hw6.entities;
 
 import java.util.ArrayList;
 
-public class MetalsAndColorsFormTestData {
+public class MetalsAndColors {
 
     // names should match keys names from json file
     public ArrayList<Integer> summary;
@@ -12,8 +12,8 @@ public class MetalsAndColorsFormTestData {
     public String metals;
     public ArrayList<String> vegetables;
 
-    public MetalsAndColorsFormTestData(ArrayList<Integer> summary, ArrayList<String> elementsList,
-                                       String color, String metals, ArrayList<String> vegetablesList) {
+    public MetalsAndColors(ArrayList<Integer> summary, ArrayList<String> elementsList,
+                           String color, String metals, ArrayList<String> vegetablesList) {
         this.summary = summary;
         this.elements = elementsList;
         this.color = color;
