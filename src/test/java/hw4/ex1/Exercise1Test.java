@@ -4,11 +4,7 @@ import hw4.AbstractBaseTest;
 import org.testng.annotations.Test;
 
 
-
 public class Exercise1Test extends AbstractBaseTest {
-
-    private final String FRAME_WITH_BUTTON_NAME = "frame";
-
 
     @Test(description = "Test main page, exercise 1")
     public void exerciseOneTest() {
@@ -37,7 +33,7 @@ public class Exercise1Test extends AbstractBaseTest {
         assertionStep.iFrameWithButtonIsDisplayed();
 
         //9. Switch to frame and check button
-        actionStep.goToIFrameWithName(FRAME_WITH_BUTTON_NAME);
+        actionStep.goToIFrameWithButton();
         assertionStep.buttonWithinIFrameIsDisplayed();
 
         //10. Switch back
@@ -47,7 +43,6 @@ public class Exercise1Test extends AbstractBaseTest {
         assertionStep.sidebarMenuContainsCorrectNames();
 
         //12. Closing is in Abstract parent class
-
     }
 
 }

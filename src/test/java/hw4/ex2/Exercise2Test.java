@@ -3,10 +3,9 @@ package hw4.ex2;
 import hw4.AbstractBaseTest;
 import org.testng.annotations.Test;
 
-
 public class Exercise2Test extends AbstractBaseTest {
 
-    private final String  DIFFERENT_ELEMENTS_PAGE_TITLE_EXPECTED = "Different Elements";
+    private final String DIFFERENT_ELEMENTS_PAGE_TITLE_EXPECTED = "Different Elements";
 
     @Test(description = "Test different elements page, exercise 2")
     public void exerciseTwoTest() {
@@ -14,7 +13,7 @@ public class Exercise2Test extends AbstractBaseTest {
         actionStep.openIndexPage();
 
         //2. Check title
-        assertionStep.pageTitleIsCorrect(driver.getTitle(), super.HOME_PAGE_TITLE_EXPECTED);
+        assertionStep.pageTitleIsCorrect(driver.getTitle(), HOME_PAGE_TITLE_EXPECTED);
 
         //3. Perform login
         actionStep.login(ROMAN_LOGIN, ROMAN_PASSWORD);

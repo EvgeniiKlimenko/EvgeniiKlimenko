@@ -7,11 +7,10 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
-
 public class DifferentElementsPage extends AbstractPage {
 
     @FindBy(xpath = ("//*[@class='info-panel-section']/ul/li"))
-    List<WebElement> logsList;
+    private List<WebElement> logsList;
 
     public DifferentElementsPage(WebDriver driver) {
         super(driver);
@@ -22,16 +21,10 @@ public class DifferentElementsPage extends AbstractPage {
         return logsList;
     }
 
-    public void selectCheckBoxes() {
-        myDriver.findElement(By.xpath("//label[contains(. ,'Water')]/input")).click(); // Water
-        myDriver.findElement(By.xpath("//label[contains(. ,'Wind')]/input")).click(); // Wind
+    public void selectElementsByXPath(String ... locators) {
+        for(String locatorToClick: locators) {
+            myDriver.findElement(By.xpath(locatorToClick)).click();
+        }
     }
 
-    public void selectRadioButton() {
-        myDriver.findElement(By.xpath("//label[contains(. ,'Selen')]/input")).click(); // Selen
-    }
-
-    public void selectFromDropdownMenu() {
-        myDriver.findElement(By.xpath("//*[@class='colors']/select/option[4]")).click(); // Yellow
-    }
 }

@@ -10,6 +10,11 @@ import java.util.List;
 
 public class IndexPage extends AbstractPage {
     private String URL = "https://jdi-testing.github.io/jdi-light/index.html";
+    private final String DIFFERENT_ELEMENTS_REF_IN_HEADER_MENU_TOP = "//li[3]/ul/li[8]/a";
+    private final String BUTTON_IN_IFRAME = "#frame-button";
+
+    @FindBy(xpath = ("//header/div/nav/ul[2]/li/a"))
+    private WebElement openLoginDropdownButton;
 
     @FindBy(id = "name")
     private WebElement userField;
@@ -20,7 +25,10 @@ public class IndexPage extends AbstractPage {
     @FindBy(id = "login-button")
     private WebElement submitBtn;
 
-    @FindBy(xpath = ("//*[@class='uui-navigation nav navbar-nav m-l8']/li[position()<5]/a"))
+    @FindBy(id = "user-name")
+    private WebElement loggedUserName;
+
+    @FindBy(xpath = ("//div/nav/ul[1]/li[position()<5]/a"))
     private List<WebElement> headerHorizontalList;
 
     @FindBy(className = ("benefit-icon"))
@@ -29,8 +37,17 @@ public class IndexPage extends AbstractPage {
     @FindBy(xpath = ("//*[@class='col-sm-3']/div/span"))
     private List<WebElement> benefitTextsList;
 
-    @FindBy(xpath = ("//*[@class='sidebar-menu']/li[position()<6]/a/span"))
+    @FindBy(xpath = ("//*[@class='sidebar-menu left']/li[position()<6]/a/span"))
     private List<WebElement> sideBarMenuList;
+
+    @FindBy(xpath = ("//div/nav/ul[1]"))
+    private WebElement headerMenuTop;
+
+    @FindBy(xpath = ("//header/div/nav/ul[1]/li[3]"))
+    private WebElement serviceTopMenuButton;
+
+    @FindBy(id = ("frame"))
+    private WebElement iFrameWithButton;
 
     public IndexPage(WebDriver driver) {
         super(driver);
@@ -42,49 +59,55 @@ public class IndexPage extends AbstractPage {
     }
 
     public void login(String login, String pass) {
-        myDriver.findElements(By.className("dropdown-toggle")).get(1).click();
+        openLoginDropdownButton.click();
         userField.sendKeys(login);
-        this.passwordField.sendKeys(pass);
+        passwordField.sendKeys(pass);
         submitBtn.click();
     }
 
     public boolean isLoggedUserCorrect(String userExpectedName) {
-        WebElement userName = myDriver.findElement(By.id("user-name"));
-        return userName.getText().equals(userExpectedName);
+        return loggedUserName.getText().equals(userExpectedName);
     }
 
-    public List<WebElement> getHeaderHorizList() { return headerHorizontalList; }
+    public List<WebElement> getHeaderHorizList() {
+        return headerHorizontalList;
+    }
 
-    public List<WebElement> getBenefitImagesList() { return benefitImagesList; }
+    public List<WebElement> getBenefitImagesList() {
+        return benefitImagesList;
+    }
 
-    public List<WebElement> getBenefitTextsList() { return benefitTextsList; }
+    public List<WebElement> getBenefitTextsList() {
+        return benefitTextsList;
+    }
 
-    public List<WebElement> getSideBarMenuList() { return sideBarMenuList;}
+    public List<WebElement> getSideBarMenuList() {
+        return sideBarMenuList;
+    }
 
-    public WebElement getIFrameByName(String frameName) {
-        return myDriver.findElement(By.id(frameName));
+    public WebElement getIFrameWithButton() {
+        return iFrameWithButton;
     }
 
     public void switchToDefaultContent() {
         myDriver.switchTo().defaultContent();
     }
 
-    /**
-     * Use only when content is switched to iFrame with switchToIFrameWButton()
+     /**
+     * Use only when content is switched to iFrame with goToIFrameByWebElement(iFrameWithButton)
      * @return button within iFrame
      */
     public WebElement getButtonFromIFrame() {
-        return myDriver.findElement(By.xpath("/html/body/span/div/div/input"));
+        return myDriver.findElement(By.cssSelector(BUTTON_IN_IFRAME));
     }
 
     public void goToDifferentElementsPage() {
-        WebElement headerListTop = myDriver.findElement(By.xpath("//*[@class='uui-navigation nav navbar-nav m-l8']"));
-        myDriver.findElement(By.xpath("//header/div/nav/ul[1]/li[3]")).click();
-        headerListTop.findElement(By.xpath("//li[3]/ul/li[8]/a")).click();
+        serviceTopMenuButton.click();
+        headerMenuTop.findElement(By.xpath(DIFFERENT_ELEMENTS_REF_IN_HEADER_MENU_TOP)).click();
     }
 
-    public void goToIFrameWithButton(String name) {
-        myDriver.switchTo().frame(name);
+    public void goToIFrameByWebElement(WebElement frameElement) {
+        myDriver.switchTo().frame(frameElement);
     }
 
 }
