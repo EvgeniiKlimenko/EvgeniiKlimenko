@@ -11,7 +11,6 @@ import java.util.List;
 
 public class ThenStep extends AbstractBaseStep {
 
-    // for home page
     @Then("Page title should be {string}")
     public void homePageTitleShouldBeAsExpected(String expectedTitle) {
         Assert.assertEquals(indexPage.getPageTitle(), expectedTitle);

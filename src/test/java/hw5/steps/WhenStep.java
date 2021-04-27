@@ -4,10 +4,14 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.When;
 
 public class WhenStep extends AbstractBaseStep {
+    private final String WATER_CHECKBOX_LOCATOR = "//label[contains(. ,'Water')]/input";
+    private final String WIND_CHECKBOX_LOCATOR = "//label[contains(. ,'Wind')]/input";
+    private final String SELEN_RADIO_BUTTON_LOCATOR = "//label[contains(. ,'Selen')]/input";
+    private final String YELLOW_DROPDOWN_OPTION_LOCATOR = "//*[@class='colors']/select/option[4]";
 
     @When("I click 'Water' and 'Wind' checkboxes")
     public void iClickWaterWindCheckBoxes() {
-        difElPage.selectCheckBoxes();
+        difElPage.selectElementsByXPath(WATER_CHECKBOX_LOCATOR, WIND_CHECKBOX_LOCATOR);
     }
 
     @When("I login as user 'Roman Iovlev'")
@@ -15,7 +19,6 @@ public class WhenStep extends AbstractBaseStep {
         indexPage.login(ROMAN_LOGIN, ROMAN_PASSWORD);
     }
 
-    // write separate action for click on service menu
     @When("I click on 'Service' button in Header")
     public void iClickOnServiceMenuBtn() {
         indexPage.clickOnServiceBtnWithinHeader();
@@ -28,7 +31,7 @@ public class WhenStep extends AbstractBaseStep {
 
     @And("I click 'Selen' radiobutton")
     public void iClickRadioBtnWithName() {
-        difElPage.selectRadioButton();
+        difElPage.selectElementsByXPath(SELEN_RADIO_BUTTON_LOCATOR);
     }
 
     /**
@@ -36,7 +39,7 @@ public class WhenStep extends AbstractBaseStep {
      */
     @And("I click 'Yellow' in dropdown menu")
     public void iClickDropdownMenuBtnWithName() {
-        difElPage.selectFromDropdownMenu();
+        difElPage.selectElementsByXPath(YELLOW_DROPDOWN_OPTION_LOCATOR);
     }
 
     @And("I click on \"Different elements\" button in Service dropdown menu")
