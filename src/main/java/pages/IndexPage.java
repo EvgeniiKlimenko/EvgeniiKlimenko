@@ -8,8 +8,14 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
+
 public class IndexPage extends AbstractPage {
     private String URL = "https://jdi-testing.github.io/jdi-light/index.html";
+    private final String DIFFERENT_ELEMENTS_REF_IN_HEADER_MENU_TOP = "//li[3]/ul/li[8]/a";      // LOCATOR!!!
+    private final String BUTTON_IN_IFRAME = "#frame-button";
+
+    @FindBy(xpath = ("//header/div/nav/ul[2]/li/a"))
+    private WebElement openLoginDropdownButton;
 
     @FindBy(id = "name")
     private WebElement userField;
@@ -20,7 +26,10 @@ public class IndexPage extends AbstractPage {
     @FindBy(id = "login-button")
     private WebElement submitBtn;
 
-    @FindBy(xpath = ("*[@class='uui-navigation nav navbar-nav m-l8']/li[position()<5]"))
+    @FindBy(id = "user-name")
+    private WebElement loggedUserName;
+
+    @FindBy(xpath = ("//div/nav/ul[1]/li[position()<5]/a"))
     private List<WebElement> headerHorizontalList;
 
     @FindBy(xpath = ("//*[@class='uui-navigation nav navbar-nav m-l8']"))
@@ -32,28 +41,36 @@ public class IndexPage extends AbstractPage {
     @FindBy(xpath = ("//*[@class='col-sm-3']/div/span"))
     private List<WebElement> benefitTextsList;
 
-    @FindBy(xpath = ("//*[@class='sidebar-menu']/li[position()<6]/a/span"))
+    @FindBy(xpath = ("//*[@class='sidebar-menu left']/li[position()<6]/a/span"))
     private List<WebElement> sideBarMenuList;
+
+    @FindBy(xpath = ("//div/nav/ul[1]"))
+    private WebElement headerMenuTop;
+
+    @FindBy(xpath = ("//header/div/nav/ul[1]/li[3]"))
+    private WebElement serviceTopMenuButton;
+
+    @FindBy(id = ("frame"))
+    private WebElement iFrameWithButton;
 
     public IndexPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
 
+    public void login(String login, String pass) {
+        openLoginDropdownButton.click();
+        userField.sendKeys(login);
+        passwordField.sendKeys(pass);
+        submitBtn.click();
+    }
+
     public void openIndexPage() {
         myDriver.get(URL);
     }
 
-    public void login(String login, String pass) {
-        myDriver.findElements(By.className("dropdown-toggle")).get(1).click();
-        userField.sendKeys(login);
-        this.passwordField.sendKeys(pass);
-        submitBtn.click();
-    }
-
     public boolean isLoggedUserCorrect(String userExpectedName) {
-        WebElement userName = myDriver.findElement(By.id("user-name"));
-        return userName.getText().equals(userExpectedName);
+        return loggedUserName.getText().equals(userExpectedName);
     }
 
     public List<WebElement> getHeaderHorizList() {
@@ -72,45 +89,42 @@ public class IndexPage extends AbstractPage {
         return sideBarMenuList;
     }
 
-    public WebElement getIFrameByName(String frameName) {
-        return myDriver.findElement(By.id(frameName));
+    public WebElement getIFrameWithButton() {
+        return iFrameWithButton;
     }
 
     public void switchToDefaultContent() {
         myDriver.switchTo().defaultContent();
     }
 
+    public void clickOnServiceBtnWithinHeader() {
+        myDriver.findElement(By.xpath("//header/div/nav/ul[1]/li[3]")).click();     // LOCATOR!!!
+    }
+
+    public void clickOnDiffElemsBtnWithinHeader() {
+        headerHorizontalMenu.findElement(By.xpath("//li[3]/ul/li[8]/a")).click();   // LOCATOR!!!
+    }
+
+    public void clickOnUserTableBtnWithinHeader() {
+        headerHorizontalMenu.findElement(By.xpath("//li[3]/ul/li[6]/a")).click();   // LOCATOR!!!
+    }
+
     /**
-     * Use only when content is switched to iFrame with switchToIFrameWButton()
+     * Use only when content is switched to iFrame with goToIFrameByWebElement(iFrameWithButton)
      *
      * @return button within iFrame
      */
     public WebElement getButtonFromIFrame() {
-        return myDriver.findElement(By.xpath("/html/body/span/div/div/input"));
+        return myDriver.findElement(By.cssSelector(BUTTON_IN_IFRAME));
     }
 
-    /**
-     * This method is for old HWs.
-     */
     public void goToDifferentElementsPage() {
-        clickOnServiceBtnWithinHeader();
-        headerHorizontalMenu.findElement(By.xpath("//li[3]/ul/li[8]/a")).click();
+        serviceTopMenuButton.click();
+        headerMenuTop.findElement(By.xpath(DIFFERENT_ELEMENTS_REF_IN_HEADER_MENU_TOP)).click();
     }
 
-    public void goToIFrameWithButton(String name) {
-        myDriver.switchTo().frame(name);
-    }
-
-    public void clickOnServiceBtnWithinHeader() {
-        myDriver.findElement(By.xpath("//header/div/nav/ul[1]/li[3]")).click();
-    }
-
-    public void clickOnDiffElemsBtnWithinHeader() {
-        headerHorizontalMenu.findElement(By.xpath("//li[3]/ul/li[8]/a")).click();
-    }
-
-    public void clickOnUserTableBtnWithinHeader() {
-        headerHorizontalMenu.findElement(By.xpath("//li[3]/ul/li[6]/a")).click();
+    public void goToIFrameByWebElement(WebElement frameElement) {
+        myDriver.switchTo().frame(frameElement);
     }
 
 }

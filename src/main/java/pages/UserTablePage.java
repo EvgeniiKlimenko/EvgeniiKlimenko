@@ -9,6 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import java.util.List;
 
 public class UserTablePage extends AbstractPage {
+    private final String IVAN_CHECKBOX_ID = "ivan";
 
     @FindBy(xpath = ("//*[@id='user-table']/tbody/tr[position()<6]"))
     private List<WebElement> userTableMain;
@@ -30,7 +31,7 @@ public class UserTablePage extends AbstractPage {
     }
 
     public void clickVipCheckBoxInTableForSergeyIvan() {
-        myDriver.findElement(By.id("ivan")).click();
+        myDriver.findElement(By.id(IVAN_CHECKBOX_ID)).click();
     }
 
 }

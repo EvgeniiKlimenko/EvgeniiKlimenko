@@ -16,7 +16,7 @@ public class WebDriverSingleton {
 
     public static WebDriver getDriver() {
         if (Objects.isNull(driver)) {
-            WebDriverManager.chromedriver().browserVersion("89.0.4389.90").setup();
+            WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver();
             driver.manage().window().maximize();
             driver.manage().timeouts().implicitlyWait(Duration.ofMillis(5000));
