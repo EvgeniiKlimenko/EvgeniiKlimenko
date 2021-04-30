@@ -26,13 +26,13 @@ public class Exercise2Test extends AbstractBaseTest {
         assertionStep.pageTitleIsCorrect(driver.getTitle(), DIFFERENT_ELEMENTS_PAGE_TITLE_EXPECTED);
 
         //6. Select checkboxes water and wind
-        actionStep.selectCheckBoxes();
+        actionStep.selectCheckBoxes("Water", "Wind");
 
         //7. Select radio button selen
-        actionStep.selectRadioButton();
+        actionStep.selectRadioButton("Selen");
 
         //8. Select dropdown yellow
-        actionStep.selectFromDropdownMenu();
+        actionStep.selectFromDropdownMenu("Yellow");
 
         //9. Check logs (Water, wind, selen, yellow)
         assertionStep.logListContainsSpecificLogs();

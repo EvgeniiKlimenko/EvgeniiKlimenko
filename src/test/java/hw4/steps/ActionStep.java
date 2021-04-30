@@ -2,15 +2,13 @@ package hw4.steps;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 public class ActionStep extends AbstractStep {
 
     private final String WATER_CHECKBOX_LOCATOR = "//label[contains(. ,'Water')]/input";
     private final String WIND_CHECKBOX_LOCATOR = "//label[contains(. ,'Wind')]/input";
     private final String SELEN_RADIO_BUTTON_LOCATOR = "//label[contains(. ,'Selen')]/input";
-    private final String YELLOW_DROPDOWN_OPTION_LOCATOR = "//*[@class='colors']/select/option[4]";
-    private final String DIFFERENT_ELEMENTS_PAGE_TITLE_EXPECTED = "Different Elements";
+    private final String YELLOW_DROPDOWN_OPTION_LOCATOR = "//option[contains(. ,'Yellow')]";
 
     public ActionStep(WebDriver driver) {
         super(driver);
@@ -32,18 +30,18 @@ public class ActionStep extends AbstractStep {
     }
 
     @Step("Select wind and water check boxes")
-    public void selectCheckBoxes() {
-        difElPage.selectElementsByXPath(WATER_CHECKBOX_LOCATOR, WIND_CHECKBOX_LOCATOR);
+    public void selectCheckBoxes(String ... checkboxes) {
+        difElPage.selectCheckBoxes(checkboxes);
     }
 
     @Step("Select Selen radio button")
-    public void selectRadioButton() {
-        difElPage.selectElementsByXPath(SELEN_RADIO_BUTTON_LOCATOR);
+    public void selectRadioButton(String radioButton) {
+        difElPage.selectRadioButton(radioButton);
     }
 
     @Step("Select Yellow color from dropdown menu")
-    public void selectFromDropdownMenu() {
-        difElPage.selectElementsByXPath(YELLOW_DROPDOWN_OPTION_LOCATOR);
+    public void selectFromDropdownMenu(String option) {
+        difElPage.selectFromDropdownMenu(option);
     }
 
 }

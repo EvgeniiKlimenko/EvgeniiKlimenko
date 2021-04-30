@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
-<suite name="Full test exerc1 and 2 for homework 4">
+<suite name="Full test exercises for homework 4.">
 
     <listeners>
         <listener class-name="hw4.listeners.ScreenShotOnFailListener"></listener>
@@ -9,6 +9,7 @@
         <classes>
             <class name="hw4.ex1.Exercise1Test"/>
             <class name="hw4.ex2.Exercise2Test"/>
+            <class name="hw4.ex3.Exercise3Test"/>
         </classes>
     </test>
 </suite>

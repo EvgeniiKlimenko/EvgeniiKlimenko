@@ -5,6 +5,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 
@@ -20,18 +21,24 @@ public class AssertionStep extends AbstractStep {
 
     @Step("Check 4 items on the header")
     public void checkHeaderItemsIsCorrect() {
-        Assert.assertEquals(indexPage.getHeaderHorizList().size(), HEADER_HORIZON_LIST_SIZE_EXPECTED);
-        for (WebElement el: indexPage.getHeaderHorizList()) {
-            Assert.assertTrue(MenuList.HOME.checkIsContains(el.getText()));
+        List<WebElement> horizontalList =  indexPage.getHeaderHorizList();
+        Assert.assertEquals(horizontalList.size(), HEADER_HORIZON_LIST_SIZE_EXPECTED);
+        SoftAssert softAssertion = new SoftAssert();
+        for (WebElement el: horizontalList) {
+            softAssertion.assertTrue(MenuList.HOME.checkIsContains(el.getText()));
         }
+        softAssertion.assertAll();
     }
 
     @Step("Check 4 images on the Index Page are displayed")
     public void benefitImagesIsDisplayed() {
-        Assert.assertEquals(indexPage.getBenefitImagesList().size(), BENEFIT_IMAGES_LIST_SIZE_EXPECTED);
-        for(WebElement el: indexPage.getBenefitImagesList()) {
-            Assert.assertTrue(el.isDisplayed());
+        List<WebElement> benefitImagesList = indexPage.getBenefitImagesList();
+        Assert.assertEquals(benefitImagesList.size(), BENEFIT_IMAGES_LIST_SIZE_EXPECTED);
+        SoftAssert softAssertion = new SoftAssert();
+        for(WebElement el: benefitImagesList) {
+            softAssertion.assertTrue(el.isDisplayed());
         }
+        softAssertion.assertAll();
     }
 
     @Step("Check texts under images are correct")
@@ -47,25 +54,26 @@ public class AssertionStep extends AbstractStep {
 
     @Step("Check iFrame with button on index page is displayed")
     public void iFrameWithButtonIsDisplayed() {
-        WebElement frameWithButton = indexPage.getIFrameWithButton();
-        Assert.assertTrue(frameWithButton.isDisplayed());
+        Assert.assertTrue(indexPage.getIFrameWithButton().isDisplayed());
     }
 
     @Step("Button within the IFrame is displayed")
     public void buttonWithinIFrameIsDisplayed() {
-        WebElement frameButton = indexPage.getButtonFromIFrame();
-        Assert.assertTrue(frameButton.isDisplayed());
+        Assert.assertTrue(indexPage.getButtonFromIFrame().isDisplayed());
     }
 
     @Step("Sidebar menu contains correct names")
     public void sidebarMenuContainsCorrectNames() {
         List<WebElement> sidebarList = indexPage.getSideBarMenuList();
         Assert.assertEquals(sidebarList.size(), SIDEBAR_LIST_SIZE_EXPECTED);
+        SoftAssert softAssertion = new SoftAssert();
         for (WebElement el: sidebarList) {
-            Assert.assertTrue(MenuList.HOME.checkIsContains(el.getText().toUpperCase()));
+            softAssertion.assertTrue(MenuList.HOME.checkIsContains(el.getText().toUpperCase()));
         }
+        softAssertion.assertAll();
     }
 
+    @Step("Logs list contains correct names")
     public void logListContainsSpecificLogs() {
         List<WebElement> logsList = difElPage.getLogsList();
         Assert.assertTrue(logsList.get(0).getText().contains("Yellow"));

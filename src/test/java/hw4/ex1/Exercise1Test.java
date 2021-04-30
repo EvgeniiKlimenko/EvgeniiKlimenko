@@ -12,7 +12,7 @@ public class Exercise1Test extends AbstractBaseTest {
         actionStep.openIndexPage();
 
         //2. Check title
-        assertionStep.pageTitleIsCorrect(driver.getTitle(), super.HOME_PAGE_TITLE_EXPECTED);
+        assertionStep.pageTitleIsCorrect(driver.getTitle(), HOME_PAGE_TITLE_EXPECTED);
 
         //3. Perform login
         actionStep.login(ROMAN_LOGIN, ROMAN_PASSWORD);
