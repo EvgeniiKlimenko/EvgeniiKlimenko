@@ -6,10 +6,18 @@ import io.cucumber.java.en.Then;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-
 import java.util.List;
 
 public class ThenStep extends AbstractBaseStep {
+    private final String TYPE_DROPDOWNS_IN_USER_TABLE = "./td[2]";
+    private final String USER_NAMES_IN_USER_TABLE = "./td[3]/a";
+    private final String DESCRIPTION_TEXTS_UNDER_IMAGES_IN_USER_TABLE = "./td[4]/div/span";
+    private final String CHECKBOXES_IN_USER_TABLE = "./td[4]/div/input";
+    private final String OPTIONS_LIST_IN_ROMAN_ROW = "./td[2]/select/option[position()<4]";
+    private final String TABLE_COLUMN_NAME_NUMBER = "./td[1]";
+    private final String TABLE_COLUMN_NAME_USER = "./td[3]";
+    private final String TABLE_COLUMN_NAME_DESCRIPTION = "./td[4]/div/span";
+
 
     @Then("Page title should be {string}")
     public void homePageTitleShouldBeAsExpected(String expectedTitle) {
@@ -51,34 +59,22 @@ public class ThenStep extends AbstractBaseStep {
     //Ex2
     @And("6 Number Type Dropdowns should be displayed on Users Table on User Table Page")
     public void typeDropdownsShouldBeDisplayedOnUserTable() {
-        List<WebElement> userTableMain = userTablePage.getUserTableMain();
-        for(WebElement el: userTableMain) {
-            Assert.assertTrue(el.findElement(By.xpath("./td[2]")).isDisplayed()); // dropdown menu is second!
-        }
+        tableMainElementsIsDisplayed(TYPE_DROPDOWNS_IN_USER_TABLE);
     }
 
     @And("6 Usernames should be displayed on Users Table on User Table Page")
     public void userNameShouldBeDisplayedOnUserTable() {
-        List<WebElement> userTableMain = userTablePage.getUserTableMain();
-        for(WebElement el: userTableMain) {
-            Assert.assertTrue(el.findElement(By.xpath("./td[3]/a")).isDisplayed()); // or maybe check text itself?
-        }
+        tableMainElementsIsDisplayed(USER_NAMES_IN_USER_TABLE);
     }
 
     @And("6 Description texts under images should be displayed on Users Table on User Table Page")
     public void descriptionTextsUnderImagesShouldBeDisplayedOnUserTable() {
-        List<WebElement> userTableMain = userTablePage.getUserTableMain();
-        for(WebElement el: userTableMain) {
-            Assert.assertTrue(el.findElement(By.xpath("./td[4]/div/span")).isDisplayed()); // or maybe check text itself?
-        }
+        tableMainElementsIsDisplayed(DESCRIPTION_TEXTS_UNDER_IMAGES_IN_USER_TABLE);
     }
 
     @And("6 checkboxes should be displayed on Users Table on User Table Page")
     public void checkBoxesShouldBeDisplayedOnUserTable() {
-        List<WebElement> userTableMain = userTablePage.getUserTableMain();
-        for(WebElement el: userTableMain) {
-            Assert.assertTrue(el.findElement(By.xpath("./td[4]/div/input")).isDisplayed());
-        }
+        tableMainElementsIsDisplayed(CHECKBOXES_IN_USER_TABLE);
     }
 
     @And("User table should contain following values:")
@@ -87,9 +83,10 @@ public class ThenStep extends AbstractBaseStep {
         List <List<String>> data = dataTable.asLists(); // data.row.column
         int rowCounter = 1;
         for(WebElement el: userTableMain) {
-            Assert.assertEquals(el.findElement(By.xpath("./td[1]")).getText(), data.get(rowCounter).get(0));
-            Assert.assertEquals(el.findElement(By.xpath("./td[3]")).getText(), data.get(rowCounter).get(1));
-            Assert.assertEquals(el.findElement(By.xpath("./td[4]/div/span")).getText().replace("\n", " "), data.get(rowCounter).get(2));
+            Assert.assertEquals(el.findElement(By.xpath(TABLE_COLUMN_NAME_NUMBER)).getText(), data.get(rowCounter).get(0));
+            Assert.assertEquals(el.findElement(By.xpath(TABLE_COLUMN_NAME_USER)).getText(), data.get(rowCounter).get(1));
+            Assert.assertEquals(el.findElement(By.xpath(TABLE_COLUMN_NAME_DESCRIPTION)).getText().replace("\n", " "),
+                                                data.get(rowCounter).get(2));
             rowCounter++;
         }
     }
@@ -97,11 +94,18 @@ public class ThenStep extends AbstractBaseStep {
     @And("droplist should contain values in column Type for user Roman")
     public void droplistShouldContainTypesForUserRoman(DataTable dataTable) {
         WebElement romanRowFromTable = userTablePage.getUserTableMain().get(0);
-        List<WebElement> optionsList = romanRowFromTable.findElements(By.xpath("./td[2]/select/option[position()<4]"));
+        List<WebElement> optionsList = romanRowFromTable.findElements(By.xpath(OPTIONS_LIST_IN_ROMAN_ROW));
         List <List<String>> data = dataTable.asLists(); // data.row.column
         Assert.assertEquals(optionsList.get(0).getText(), data.get(1).get(0));
         Assert.assertEquals(optionsList.get(1).getText(), data.get(2).get(0));
         Assert.assertEquals(optionsList.get(2).getText(), data.get(3).get(0));
+    }
+
+    private void tableMainElementsIsDisplayed(String xpath) {
+        List<WebElement> userTableMain = userTablePage.getUserTableMain();
+        for(WebElement el: userTableMain) {
+            Assert.assertTrue(el.findElement(By.xpath(xpath)).isDisplayed());
+        }
     }
 
 }

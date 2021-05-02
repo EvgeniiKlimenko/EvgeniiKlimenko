@@ -11,7 +11,6 @@ public class IndexPage extends AbstractPage {
     private String HOME_PAGE_URL = "https://jdi-testing.github.io/jdi-light/index.html";
     private final String DIFFERENT_ELEMENTS_REF_IN_HEADER_MENU_TOP = "//a[contains(text(), 'Different elements')]";
     private final String USER_TABLE_REF_IN_HEADER_MENU_TOP = "//a[contains(text(), 'User Table')]";
-    //private final String SERVICE_BUTTON_IN_HEADER_TOP = "//a[contains(text(), 'Service')]";
     private final String BUTTON_IN_IFRAME = "#frame-button";
 
     @FindBy(id = ("user-icon"))
@@ -98,7 +97,6 @@ public class IndexPage extends AbstractPage {
 
     public void clickOnServiceBtnWithinHeader() {
         serviceTopMenuButton.click();
-        //myDriver.findElement(By.xpath(SERVICE_BUTTON_IN_HEADER_TOP)).click();
     }
 
     public void clickOnDiffElemsBtnWithinHeader() {
@@ -110,7 +108,7 @@ public class IndexPage extends AbstractPage {
     }
 
      /**
-     * Use only when content is switched to iFrame with goToIFrameByWebElement(iFrameWithButton)     *
+     * Use only when content is switched to iFrame with goToIFrameByWebElement(iFrameWithButton)
      * @return button within iFrame
      */
     public WebElement getButtonFromIFrame() {
