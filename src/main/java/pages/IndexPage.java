@@ -4,18 +4,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-
 import java.util.List;
-//hw3
-public class IndexPage extends AbstractPage {
 
-    //private final String
-    private final String DIFFERENT_ELEMENTS_REF_IN_HEADER_MENU_TOP = "//li[3]/ul/li[8]/a";
+public class IndexPage extends AbstractPage {
+    private String HOME_PAGE_URL = "https://jdi-testing.github.io/jdi-light/index.html";
+    private final String DIFFERENT_ELEMENTS_REF_IN_HEADER_MENU_TOP = "//a[contains(text(), 'Different elements')]";
     private final String BUTTON_IN_IFRAME = "#frame-button";
 
-    @FindBy(xpath = ("//header/div/nav/ul[2]/li/a"))
-    private WebElement openLoginDropdownButton;
+    @FindBy(id = ("user-icon"))
+    private WebElement userIconLogin;
 
     @FindBy(id = "name")
     private WebElement userField;
@@ -44,7 +41,7 @@ public class IndexPage extends AbstractPage {
     @FindBy(xpath = ("//div/nav/ul[1]"))
     private WebElement headerMenuTop;
 
-    @FindBy(xpath = ("//header/div/nav/ul[1]/li[3]"))
+    @FindBy(xpath = ("//header//a[contains(. ,'Service')]"))
     private WebElement serviceTopMenuButton;
 
     @FindBy(id = ("frame"))
@@ -52,11 +49,14 @@ public class IndexPage extends AbstractPage {
 
     public IndexPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
+    }
+
+    public void openIndexPage() {
+        myDriver.get(HOME_PAGE_URL);
     }
 
     public void login(String login, String pass) {
-        openLoginDropdownButton.click();
+        userIconLogin.click();
         userField.sendKeys(login);
         passwordField.sendKeys(pass);
         submitBtn.click();
@@ -90,7 +90,7 @@ public class IndexPage extends AbstractPage {
         myDriver.switchTo().defaultContent();
     }
 
-    /**
+     /**
      * Use only when content is switched to iFrame with goToIFrameByWebElement(iFrameWithButton)
      * @return button within iFrame
      */
