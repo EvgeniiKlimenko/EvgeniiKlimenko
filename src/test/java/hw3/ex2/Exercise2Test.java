@@ -21,7 +21,7 @@ public class Exercise2Test extends AbstractBaseTest {
         driver.get(URL);
         IndexPage indexPage = new IndexPage(driver);
         DifferentElementsPage difElPage = new DifferentElementsPage(driver);
-        Assert.assertEquals(driver.getTitle(), super.HOME_PAGE_TITLE_EXPECTED);
+        Assert.assertEquals(driver.getTitle(), HOME_PAGE_TITLE_EXPECTED);
 
         //3. Perform login
         indexPage.login(ROMAN_LOGIN, ROMAN_PASSWORD);

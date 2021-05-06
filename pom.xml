@@ -16,10 +16,10 @@
         <maven-failsafe-plugin.version>3.0.0-M5</maven-failsafe-plugin.version>
         <allure-testng.version>2.13.8</allure-testng.version>
         <selenium.version>4.0.0-beta-1</selenium.version>
+        <cucumber.version>6.10.1</cucumber.version>
+        <aspectj.version>1.8.10</aspectj.version>
         <testng.version>7.3.0</testng.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
-        <testng.version>7.3.0</testng.version>
-        <maven-compiler-plugin>3.8.1</maven-compiler-plugin>
         <webdrivermanager.version>4.3.1</webdrivermanager.version>
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
         <commons-lang3.version>3.11</commons-lang3.version>
@@ -30,10 +30,20 @@
         <profile>
             <id>HW6fullTest</id>
             <activation>
-                <activeByDefault>true</activeByDefault>
+                <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
                 <suite.file>${project.basedir}/src/test/resources/hw6/TestSuiteHW6.xml</suite.file>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>HW5fullTest</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <suite.file>${project.basedir}/src/test/resources/hw5/TestSuiteHW5.xml</suite.file>
             </properties>
         </profile>
 
@@ -120,21 +130,18 @@
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>${selenium.version}</version>
-            <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-api</artifactId>
             <version>${selenium.version}</version>
-            <scope>compile</scope>
         </dependency>
 
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-support</artifactId>
             <version>${selenium.version}</version>
-            <scope>compile</scope>
         </dependency>
 
         <dependency>
@@ -148,7 +155,6 @@
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
             <version>${webdrivermanager.version}</version>
-            <scope>test</scope>
         </dependency>
 
         <dependency>
@@ -160,12 +166,25 @@
         </dependency>
 
         <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-testng</artifactId>
+            <version>${cucumber.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>${cucumber.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
             <version>${allure-testng.version}</version>
             <scope>test</scope>
         </dependency>
-  
+
         <dependency>
             <groupId>com.epam.jdi</groupId>
             <artifactId>jdi-light-html</artifactId>
@@ -246,7 +265,5 @@
             </plugin>
 
         </plugins>
-
     </build>
-
 </project>

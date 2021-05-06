@@ -6,9 +6,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import java.util.List;
 
+
 public class IndexPage extends AbstractPage {
     private String HOME_PAGE_URL = "https://jdi-testing.github.io/jdi-light/index.html";
     private final String DIFFERENT_ELEMENTS_REF_IN_HEADER_MENU_TOP = "//a[contains(text(), 'Different elements')]";
+    private final String USER_TABLE_REF_IN_HEADER_MENU_TOP = "//a[contains(text(), 'User Table')]";
     private final String BUTTON_IN_IFRAME = "#frame-button";
 
     @FindBy(id = ("user-icon"))
@@ -28,6 +30,9 @@ public class IndexPage extends AbstractPage {
 
     @FindBy(xpath = ("//div/nav/ul[1]/li[position()<5]/a"))
     private List<WebElement> headerHorizontalList;
+
+    @FindBy(xpath = ("//*[@class='uui-navigation nav navbar-nav m-l8']"))
+    private WebElement headerHorizontalMenu;
 
     @FindBy(className = ("benefit-icon"))
     private List<WebElement> benefitImagesList;
@@ -88,6 +93,18 @@ public class IndexPage extends AbstractPage {
 
     public void switchToDefaultContent() {
         myDriver.switchTo().defaultContent();
+    }
+
+    public void clickOnServiceBtnWithinHeader() {
+        serviceTopMenuButton.click();
+    }
+
+    public void clickOnDiffElemsBtnWithinHeader() {
+        headerHorizontalMenu.findElement(By.xpath(DIFFERENT_ELEMENTS_REF_IN_HEADER_MENU_TOP)).click();
+    }
+
+    public void clickOnUserTableBtnWithinHeader() {
+        headerHorizontalMenu.findElement(By.xpath(USER_TABLE_REF_IN_HEADER_MENU_TOP)).click();
     }
 
      /**
